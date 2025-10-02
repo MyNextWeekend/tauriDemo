@@ -1,171 +1,69 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
-Vue.use(Router)
 
-import Layout from '@/layout'
+import Layout from '@/layout/index.vue'
 
-// 固定路由，不需要权限
-export const constantRoutes = [
+
+// 公开的路由
+export const publicRoutes = [
   {
     path: '/login',
-    component: () => import('@/views/login/index'),
-    hidden: true
-  },
+    component: () => import('@/views/login/index.vue'),
+  }
+]
+
+// 私有的路由
+export const privateRoutes = [
   {
-    path: '/404',
-    component: () => import('@/views/error-page/404'),
-    hidden: true
-  },
-  {
-    path: '/401',
-    component: () => import('@/views/error-page/401'),
-    hidden: true
-  },
-  {
-    path: '/documentation',
+    path: '/news',
     component: Layout,
+    redirect: '/news/dashboard',
+    meta: { title: '首页', icon: 'wallet' },
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/documentation/index'),
-        name: '文档',
-        meta: { title: '文档', icon: 'documentation', affix: true }
+        path: '/news/dashboard',
+        component: () => import('@/views/dashboard/index.vue'),
+        meta: { title: '大盘', icon: 'user' }
+      },
+      {
+        path: '/news/user',
+        component: () => import('@/views/user/index.vue'),
+        meta: { title: '用户', icon: 'user' }
+      }
+    ]
+  },
+  {
+    path: '/summer',
+    component: Layout,
+    redirect: '/summer/summer',
+    meta: { title: '凭证处理', icon: 'more' },
+    children: [
+      {
+        path: '/summer/summer',
+        component: () => import('@/views/summer/index.vue'),
+        meta: { title: '凭证', icon: 'game' }
+      },
+      {
+        path: '/summer/user',
+        component: () => import('@/views/user/index.vue'),
+        meta: { title: '用户', icon: 'document' }
       }
     ]
   }
 ]
 
-// 动态路由
-export const asyncRoutes = [
-  {
-    path: '/tool',
-    component: Layout,
-    alwaysShow: true, // will always show the root menu
-    name: '实用工具',
-    meta: {
-      title: '实用工具',
-      icon: 'lock',
-      roles: ['admin', 'editor'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'list',
-        component: () => import('@/views/tool/list'),
-        name: 'ToolList',
-        meta: {
-          title: '工具001',
-          icon: 'edit',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'info',
-        component: () => import('@/views/tool/info'),
-        name: 'ToolInfo',
-        meta: {
-          title: '工具002'
-        }
-      }
-    ]
-  },
-  {
-    path: '/settings',
-    component: Layout,
-    redirect: '/settings/api',
-    alwaysShow: true, // will always show the root menu
-    name: '设置',
-    meta: {
-      title: '设置',
-      icon: 'el-icon-setting',
-      roles: ['admin', 'editor'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'api',
-        component: () => import('@/views/settings/api'),
-        name: 'SettingApi',
-        meta: {
-          title: '接口设置',
-          icon: 'el-icon-sunny',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'parameter',
-        component: () => import('@/views/settings/parameter'),
-        name: 'SettingParameter',
-        meta: {
-          title: '参数设置',
-          icon: 'el-icon-sugar'
-        }
-      },
-      {
-        path: 'database',
-        component: () => import('@/views/settings/database'),
-        name: 'SettingDatabase',
-        meta: {
-          title: '数据库配置',
-          icon: 'el-icon-sunny'
-        }
-      }
-    ]
-  },
-  {
-    path: '/task',
-    component: Layout,
-    redirect: '/task/case',
-    alwaysShow: true, // will always show the root menu
-    name: '任务',
-    meta: {
-      title: '任务',
-      icon: 'el-icon-wind-power',
-      roles: ['admin', 'editor'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'case',
-        component: () => import('@/views/task/case'),
-        name: 'TaskCase',
-        meta: {
-          title: '用例信息',
-          icon: 'el-icon-crop',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'history',
-        component: () => import('@/views/task/history'),
-        name: 'TaskHistory',
-        meta: {
-          title: '执行记录',
-          icon: 'el-icon-monitor'
-        }
-      },
-      {
-        path: 'report',
-        component: () => import('@/views/task/report'),
-        name: 'TaskReport',
-        meta: {
-          title: '执行报告',
-          icon: 'el-icon-tickets'
-        }
-      }
-    ]
-  },
-  { path: '*', redirect: '/404', hidden: true }
-]
-
-const createRouter = () => new Router({
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
+// 初始化路由只有公开路由
+const create = () => createRouter({
+  history: createWebHistory(),
+  routes: publicRoutes
 })
 
-const router = createRouter()
+const router = create()
 
+// 退出登陆 之后 重置路由
 export function resetRouter() {
-  const newRouter = createRouter()
-  router.matcher = newRouter.matcher // reset router
+  const newRouter = create()
+  router.matcher = newRouter.matcher
 }
 
 export default router
