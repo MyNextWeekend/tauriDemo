@@ -61,80 +61,58 @@ async function logout() {
 <style lang="scss" scoped>
 .navbar {
   height: 50px;
-  overflow: hidden;
-  position: relative;
+  line-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  border-bottom: 1px solid #e6e6e6;
+  padding: 0 1px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
 
   .hamburger-container {
-    line-height: 46px;
-    height: 100%;
-    float: left;
     cursor: pointer;
-    transition: background .3s;
-    -webkit-tap-highlight-color:transparent;
-
-    &:hover {
-      background: rgba(0, 0, 0, .025)
-    }
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
   }
 
   .breadcrumb-container {
-    float: left;
-  }
-
-  .errLog-container {
-    display: inline-block;
-    vertical-align: top;
+    flex: 1; // 占满中间空间
+    display: flex;
+    align-items: start;
   }
 
   .right-menu {
-    float: right;
-    height: 100%;
-    line-height: 50px;
-
-    &:focus {
-      outline: none;
-    }
+    display: flex;
+    align-items: center;
 
     .right-menu-item {
-      display: inline-block;
-      padding: 0 8px;
-      height: 100%;
-      font-size: 18px;
-      color: #5a5e66;
-      vertical-align: text-bottom;
+      margin-left: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
 
-      &.hover-effect {
-        cursor: pointer;
-        transition: background .3s;
-
-        &:hover {
-          background: rgba(0, 0, 0, .025)
-        }
+      &.hover-effect:hover {
+        background: #f5f5f5;
+        border-radius: 4px;
       }
     }
 
     .avatar-container {
-      margin-right: 30px;
-
       .avatar-wrapper {
-        margin-top: 5px;
         position: relative;
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         .user-avatar {
-          cursor: pointer;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-        }
-
-        .el-icon-caret-bottom {
-          cursor: pointer;
-          position: absolute;
-          right: -20px;
-          top: 25px;
-          font-size: 12px;
+          font-size: 30px; // svg 大小
         }
       }
     }

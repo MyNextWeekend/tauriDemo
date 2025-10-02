@@ -53,7 +53,7 @@ watch(visible, (value) => {
           @click.prevent.stop="menuStore.removeTagView(index, 'index')"></SvgIcon>
       </router-link>
     </el-scrollbar>
-    <context-menum v-show="visible" :style="floatMenu" :index="selectIndex"></context-menum>
+    <context-menum v-show="visible" :style="floatMenu" :index="selectIndex" class="contextmenu"></context-menum>
   </div>
 </template>
 

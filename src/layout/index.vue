@@ -27,41 +27,66 @@ const menuStore = useMenuStore()
 
 <style lang="scss" scoped>
 .app-wrapper {
-  @include clearfix;
-  position: relative;
-  height: 100%;
+  display: flex;
   width: 100%;
+  height: 100vh; // 占满整个视口高度
+  overflow: hidden;
 
-  &.mobile.openSidebar {
-    position: fixed;
-    top: 0;
+  // 打开侧边栏
+  &.openSidebar {
+    .sidebar-container {
+      width: 190px; // 展开宽度
+    }
+
+    .main-container {
+      margin-left: 190px;
+    }
+  }
+
+  // 收起侧边栏
+  &.hideSidebar {
+    .sidebar-container {
+      width: 54px; // 收缩宽度
+    }
+
+    .main-container {
+      margin-left: 54px;
+    }
   }
 }
 
-.drawer-bg {
-  background: #000;
-  opacity: 0.3;
-  width: 100%;
-  top: 0;
-  height: 100%;
-  position: absolute;
-  z-index: 999;
-}
-
-.fixed-header {
+.sidebar-container {
   position: fixed;
   top: 0;
-  right: 0;
-  z-index: 9;
-  width: calc(100% - #{$sideBarWidth});
-  transition: width 0.28s;
+  left: 0;
+  bottom: 0;
+  background: #304156; // 深色背景
+  transition: width 0.3s ease;
+  overflow: hidden;
 }
 
-.hideSidebar .fixed-header {
-  width: calc(100% - 54px)
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease;
+  min-height: 100vh;
+  background: #f0f2f5;
 }
 
-.mobile .fixed-header {
-  width: 100%;
+.header {
+  height: 84px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+app-main {
+  flex: 1; // 占满剩余空间
+  overflow: auto;
+  padding: 20px;
+  background: #fff;
 }
 </style>
