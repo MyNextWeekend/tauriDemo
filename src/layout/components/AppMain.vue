@@ -1,24 +1,5 @@
 <script setup>
 // 主体内容区
-import { watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { useMenuStore } from '@/store/menu'
-const route = useRoute()
-const menuStore = useMenuStore()
-
-watch(route, (to, from) => {
-  console.log('路由变化了', from, to)
-  const { path, fullPath, meta, query, params } = to
-
-  menuStore.addTagView({
-    title: meta.title,
-    path,
-    fullPath,
-    query,
-    params
-  })
-  console.log('tagViewList', menuStore.tagViewList)
-})
 </script>
 
 

@@ -39,7 +39,6 @@ router.beforeEach(async (to, from, next) => {
           userStore.getInfo()
           // 基于角色生成可访菜单
           const accessRoutes = userStore.generateRoutes()
-          console.log('accessRoutes', accessRoutes)
 
           // 动态添加路由
           accessRoutes.forEach(route => {

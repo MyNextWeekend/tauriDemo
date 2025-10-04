@@ -10,10 +10,26 @@ function toggleSidebar() {
   menuStore.toggleOpened()
 }
 
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/store/user'
 const userStore = useUserStore()
 const router = useRouter()
+
+
+import { watch } from 'vue'
+const route = useRoute()
+
+watch(route, (to, from) => {
+  const { path, fullPath, meta, query, params } = to
+
+  menuStore.addTagView({
+    title: meta.title,
+    path,
+    fullPath,
+    query,
+    params
+  })
+})
 
 async function logout() {
   try {

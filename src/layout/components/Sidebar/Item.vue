@@ -15,8 +15,10 @@ defineProps({
 </script>
 
 <template>
-  <SvgIcon v-if="icon" :iconClass="icon" class="sub-el-icon" />
-  <span class="title">{{ title }}</span>
+  <div>
+    <SvgIcon v-if="icon" :iconClass="icon" class="sub-el-icon" />
+    <span class="title">{{ title }}</span>
+  </div>
 </template>
 
 <style lang="scss" scoped>

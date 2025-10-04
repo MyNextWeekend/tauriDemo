@@ -22,7 +22,7 @@ const refresh = () => {
 
 
 <template>
-    <ul :style="{ top: top, left: left }" class="context-menu">
+    <ul class="context-menu">
         <li class="context-menu-item" @click="refresh">刷新</li>
         <li class="context-menu-item" @click="mentStore.removeTagView(props.index, 'right')">关闭右侧</li>
         <li class="context-menu-item" @click="mentStore.removeTagView(props.index, 'other')">关闭其他</li>

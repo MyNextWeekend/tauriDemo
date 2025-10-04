@@ -45,7 +45,7 @@ watch(visible, (value) => {
 
 <template>
   <div id="tags-view-container" class="tags-view-container">
-    <el-scrollbar class="tags-view-wrapper" @scroll="handleScroll">
+    <el-scrollbar class="tags-view-wrapper">
       <router-link v-for="(item, index) in menuStore.tagsViewList" :key="item.fullPath" :to="{ path: item.fullPath }"
         class="tags-view-item" :class="isActive(item) ? 'active' : ''" @contextmenu.prevent="openMenu($event, index)">
         {{ item.title }}
