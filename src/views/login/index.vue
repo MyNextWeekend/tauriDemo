@@ -21,85 +21,117 @@ async function login() {
     console.error('登录失败', err)
   }
 }
-
 </script>
 
+
 <template>
-  <div class="login">
-    <h2>XX平台</h2>
-    <div class="login-form">
-      <div class="form-item">
-        <label for="username">用户名:</label>
-        <input id="username" v-model="username" type="text" placeholder="请输入用户名" />
+  <div class="login-container">
+    <div class="login-card">
+      <h2>XX平台</h2>
+      <div class="login-form">
+        <div class="form-item">
+          <input id="username" v-model="username" type="text" placeholder="用户名" />
+        </div>
+        <div class="form-item">
+          <input id="password" v-model="password" type="password" placeholder="密码" />
+        </div>
+        <button @click="login">登录</button>
       </div>
-      <div class="form-item">
-        <label for="password">密码:</label>
-        <input id="password" v-model="password" type="password" placeholder="请输入密码" />
-      </div>
-      <button @click="login">登录</button>
     </div>
   </div>
 </template>
 
-<style scoped>
-.login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 50vh;
-  background-color: #f0f2f5;
 
-  h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
+<style scoped>
+/* 彩色旋转背景 */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(270deg, #ff4e50, #f9d423, #24c6dc, #6a82fb, #ff4e50);
+  background-size: 1000% 1000%;
+  animation: gradientRotate 20s ease infinite;
+}
+
+@keyframes gradientRotate {
+  0% {
+    background-position: 0% 50%;
   }
 
-  .login-form {
-    background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+  50% {
+    background-position: 100% 50%;
+  }
 
-    .form-item {
-      margin-bottom: 15px;
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
-      label {
-        display: block;
-        margin-bottom: 5px;
-        color: #555;
-      }
+/* 登录卡片样式 */
+.login-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  width: 360px;
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+}
 
-      input {
-        width: 60%;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 14px;
+.login-card h2 {
+  margin-bottom: 30px;
+  font-size: 26px;
+  color: #333;
+  font-weight: 600;
+}
 
-        &:focus {
-          border-color: #409eff;
-          outline: none;
-        }
-      }
-    }
+.login-form .form-item {
+  margin-bottom: 20px;
+}
 
-    button {
-      width: 40%;
-      padding: 10px;
-      background-color: #409eff;
-      border: none;
-      border-radius: 4px;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
+.login-form input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: all 0.3s;
+}
 
-      &:hover {
-        background-color: #66b1ff;
-      }
-    }
+.login-form input:focus {
+  border-color: #6a82fb;
+  box-shadow: 0 0 10px rgba(106, 130, 251, 0.4);
+  outline: none;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  background: #6a82fb;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login-form button:hover {
+  background: #5b6fd1;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 </style>
