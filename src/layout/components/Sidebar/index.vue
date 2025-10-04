@@ -50,18 +50,18 @@ const activeMenu = computed(() => {
   justify-content: center; // 水平居中
   height: 50px; // 容器高度，你可以根据需要调整
   width: 100%;
+  transition: all 0.3s;
 
   :deep(.el-avatar) {
     background: none;
   }
 
-  .sidebar-logo {
-    margin-right: 20px; // 让头像和文字之间有间距
-  }
-
   .sidebar-title {
     margin: 0; // 去掉 h1 默认 margin
     font-size: 16px;
+    margin-left: 10px;
+    color: #fff;
+    ;
   }
 }
 

@@ -33,12 +33,12 @@ function handleClick(path) {
     <template #title>
       <item v-if="item.meta?.title" :icon="item.meta?.icon" :title="item.meta?.title"></item>
     </template>
-    <sidebar-item v-for="child in item.children" :key="child.path" :item="child" class="nest-menu"></sidebar-item>
+    <sidebar-item v-for="child in item.children" :key="child.path" :item="child"></sidebar-item>
   </el-sub-menu>
 
   <!-- 没有子菜单就渲染 el-menu-item -->
   <el-menu-item v-else-if="item.meta?.title" :index="item.path" @click="handleClick(item.path)"
     :class="{ 'is-active': activePath.value === item.path }">
-    <item v-if="item.meta?.title" :icon="item.meta?.icon" :title="item.meta?.title" class="nest-menu"></item>
+    <item v-if="item.meta?.title" :icon="item.meta?.icon" :title="item.meta?.title"></item>
   </el-menu-item>
 </template>

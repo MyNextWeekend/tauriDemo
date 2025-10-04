@@ -103,9 +103,10 @@ async function logout() {
   .right-menu {
     display: flex;
     align-items: center;
+    padding-right: 36px; // 给右边留空间，可调整大小
+
 
     .right-menu-item {
-      margin-left: 10px;
       cursor: pointer;
       display: flex;
       align-items: center;
