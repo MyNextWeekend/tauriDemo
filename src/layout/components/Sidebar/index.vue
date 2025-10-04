@@ -64,4 +64,10 @@ const activeMenu = computed(() => {
     font-size: 16px;
   }
 }
+
+.scrollbar-wrapper {
+  .el-menu {
+    border-right-width: 0px;
+  }
+}
 </style>
