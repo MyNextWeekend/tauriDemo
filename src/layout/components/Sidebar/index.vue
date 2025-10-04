@@ -60,8 +60,8 @@ const activeMenu = computed(() => {
     margin: 0; // 去掉 h1 默认 margin
     font-size: 16px;
     margin-left: 10px;
+    margin-top: 15px;
     color: #fff;
-    ;
   }
 }
 
